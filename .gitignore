@@ -1,0 +1,13 @@
+.classpath
+.project
+.settings
+target
+.gradle
+build
+bin
+classes
+.cache
+/build.xml
+.history
+.scala_dependencies
+*.swp
