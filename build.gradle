@@ -1,0 +1,37 @@
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'scala'
+apply plugin: 'jetty'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+version = '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+    provided
+}
+sourceSets {
+    main { compileClasspath += configurations.provided }
+}
+
+eclipse.classpath.plusConfigurations += configurations.provided
+
+dependencies {
+	compile 'br.com.caelum:vraptor:3.4.1'
+	compile 'com.google.inject:guice:3.0-rc2'
+	compile 'com.google.inject.extensions:guice-multibindings:3.0-rc2'
+	compile 'org.scala-lang:scala-library:2.9.2'
+	
+    provided 'javax.servlet:servlet-api:2.5'
+	
+    testRuntime 'org.mockito:mockito-core:1.9.0'
+	testRuntime 'junit:junit:4.10'
+	
+	scalaTools 'org.scala-lang:scala-compiler:2.9.2'
+	scalaTools 'org.scala-lang:scala-library:2.9.2'
+}
