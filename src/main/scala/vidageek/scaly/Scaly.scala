@@ -1,38 +1,16 @@
 package vidageek.scaly
 
-import scala.collection.mutable.Map
-import br.com.caelum.vraptor.ComponentRegistry
-import br.com.caelum.vraptor.http.route.Router
-import br.com.caelum.vraptor.ioc.{ ApplicationScoped, StereotypeHandler }
+import scala.annotation.implicitNotFound
 import scala.collection.mutable.ListBuffer
-import br.com.caelum.vraptor.resource.HttpMethod
-import java.util.HashSet
-import scala.collection.immutable.Set
-import scala.collection.JavaConverters._
-import br.com.caelum.vraptor.Result
+
 import org.springframework.beans.factory.annotation.Autowired
 
-trait Scaly extends FunctionsToRequestCode {
+import br.com.caelum.vraptor.{ComponentRegistry, Result}
+import br.com.caelum.vraptor.http.route.Router
+import br.com.caelum.vraptor.ioc.{ApplicationScoped, StereotypeHandler}
+import br.com.caelum.vraptor.resource.HttpMethod
 
-  private var r : Result = _
-
-  @Autowired
-  def setResult(result : Result) = r = result
-
-  def result = r
-
-  def view = new ScalyView(result)
-
-  val pathToCode = ListBuffer[(HttpMethod, String, RequestCode)]()
-
-  def Get(path : String)(code : RequestCode) = pathToCode += ((HttpMethod.GET, path, code))
-}
-
-class ScalyView(result : Result) {
-
-  def <<(data : Tuple2[String, Any]) = result.include(data._1, data._2)
-
-}
+trait Scaly extends FunctionsToRequestCode with Rendering with ResultInjection with RequestMethods
 
 @ApplicationScoped
 class ScalyStereotype(componentRegistry : ComponentRegistry, router : Router) extends StereotypeHandler {
@@ -58,13 +36,33 @@ class ScalyStereotype(componentRegistry : ComponentRegistry, router : Router) ex
   def methodDef(clazz : Class[_]) = clazz.getDeclaredMethods().filter(_.getName == "apply").head
 }
 
-case class RequestCode(clazz : Class[_])
+class ViewData[T](data : T)
+class RequestCode(val clazz : Class[_])
 
 trait FunctionsToRequestCode {
 
-  implicit def a(f : Function0[_]) = RequestCode(f.getClass)
-  implicit def a(f : Function1[_, _]) = RequestCode(f.getClass)
-  implicit def a(f : Function2[_, _, _]) = RequestCode(f.getClass)
-  implicit def a(f : Function3[_, _, _, _]) = RequestCode(f.getClass)
+  implicit def functionToRequestCode(f : Function0[ViewData[_]]) = new RequestCode(f.getClass)
+  implicit def functionToRequestCode(f : Function1[_, ViewData[_]]) = new RequestCode(f.getClass)
+  implicit def functionToRequestCode(f : Function2[_, _, ViewData[_]]) = new RequestCode(f.getClass)
+  implicit def functionToRequestCode(f : Function3[_, _, _, ViewData[_]]) = new RequestCode(f.getClass)
 
+}
+
+trait Rendering {
+  def render[T](data : T) = new ViewData[(T)]((data))
+  def render[T, E](data : Tuple2[T, E]) = new ViewData(data)
+}
+
+trait ResultInjection {
+  private var r : Result = _
+
+  @Autowired
+  def setResult(result : Result) = r = result
+
+  def result = r
+}
+
+trait RequestMethods {
+  val pathToCode = ListBuffer[(HttpMethod, String, RequestCode)]()
+  def Get(path : String)(code : RequestCode) = pathToCode += ((HttpMethod.GET, path, code))
 }
