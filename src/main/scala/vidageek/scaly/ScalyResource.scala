@@ -6,9 +6,9 @@ import br.com.caelum.vraptor.ComponentRegistry
 @ScalyAware
 class ScalyResource extends Scaly {
 
-  Get("/abc") { (result : Result, asdf : String) =>
+  Get("/abc") { (asdf : String) =>
     println("asdf => " + asdf)
-    result.include("asdf", "blablabla")
+    view << "asdf" -> "blablabla"
   }
 
 }
