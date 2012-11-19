@@ -8,6 +8,8 @@ class ScalyResource extends Scaly {
 
   Get("/asdf")
 
+  Get("/acd")
+
   Get("/abc") { (asdf : String) =>
     println("asdf => " + asdf)
     render("blablabla", "")

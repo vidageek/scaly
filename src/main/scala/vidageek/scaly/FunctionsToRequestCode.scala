@@ -1,5 +1,7 @@
 package vidageek.scaly
 
+class RequestCode(val clazz : Class[_])
+
 trait FunctionsToRequestCode {
 
   implicit def functionToRequestCode(f : Function0[ViewData[_]]) = new RequestCode(f.getClass)
