@@ -15,4 +15,7 @@ class ScalyResource extends Scaly with UnsafeRendering {
     render("blablabla", "")
   }
 
+  Get("/unsafe") { () =>
+    renderUnsafe("abc" -> 1, "asf" -> "asf")
+  }
 }

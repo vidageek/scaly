@@ -2,6 +2,10 @@ package vidageek.scaly
 
 class ViewData[T](data : T)
 
+trait UnsafeRendering {
+  def renderUnsafe(data : (String, Any)*) = new ViewData(data.toSeq)
+}
+
 trait TypeSafeRendering {
   def render = new ViewData[Unit]()
   def render[A](data : A) = new ViewData[(A)]((data))
