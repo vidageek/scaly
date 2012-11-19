@@ -45,33 +45,6 @@ class ScalyStereotype(componentRegistry : ComponentRegistry, router : Router) ex
 class ViewData[T](data : T)
 class RequestCode(val clazz : Class[_])
 
-class ScalyRoute(delegate : Route, path : String) extends Route {
-
-  def resourceMethod(request : MutableRequest, uri : String) = new ScalyMethod(delegate.resourceMethod(request, uri), uri)
-
-  def canHandle(uri : String) = delegate.canHandle(uri)
-  def canHandle(clazz : Class[_], method : Method) = delegate.canHandle(clazz, method)
-  def allowedMethods = delegate.allowedMethods
-  def urlFor(clazz : Class[_], m : Method, params : Object*) = delegate.urlFor(clazz, m, params)
-  def getPriority = delegate.getPriority
-  def getOriginalUri = delegate.getOriginalUri
-}
-
-class ScalyMethod(delegate : ResourceMethod, val path : String) extends ResourceMethod {
-  def getMethod = delegate.getMethod
-  def getResource = delegate.getResource
-  def containsAnnotation(annotation : Class[_ <: Annotation]) = delegate.containsAnnotation(annotation)
-}
-
-trait FunctionsToRequestCode {
-
-  implicit def functionToRequestCode(f : Function0[ViewData[_]]) = new RequestCode(f.getClass)
-  implicit def functionToRequestCode(f : Function1[_, ViewData[_]]) = new RequestCode(f.getClass)
-  implicit def functionToRequestCode(f : Function2[_, _, ViewData[_]]) = new RequestCode(f.getClass)
-  implicit def functionToRequestCode(f : Function3[_, _, _, ViewData[_]]) = new RequestCode(f.getClass)
-
-}
-
 trait Rendering {
   def render[T](data : T) = new ViewData[(T)]((data))
   def render[T, E](data : (T, E)) = new ViewData(data)
