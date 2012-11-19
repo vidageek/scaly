@@ -50,22 +50,19 @@ class RequestCode(val clazz : Class[_])
 
 class ScalyRoute(delegate : Route, path : String) extends Route {
 
-  override def resourceMethod(request : MutableRequest, uri : String) = new ScalyMethod(delegate.resourceMethod(request, uri), uri)
+  def resourceMethod(request : MutableRequest, uri : String) = new ScalyMethod(delegate.resourceMethod(request, uri), uri)
 
-  override def canHandle(uri : String) = delegate.canHandle(uri)
-  override def canHandle(clazz : Class[_], method : Method) = delegate.canHandle(clazz, method)
-  override def allowedMethods = delegate.allowedMethods
-  override def urlFor(clazz : Class[_], m : Method, params : Object*) = delegate.urlFor(clazz, m, params)
-  override def getPriority = delegate.getPriority
-  override def getOriginalUri = delegate.getOriginalUri
+  def canHandle(uri : String) = delegate.canHandle(uri)
+  def canHandle(clazz : Class[_], method : Method) = delegate.canHandle(clazz, method)
+  def allowedMethods = delegate.allowedMethods
+  def urlFor(clazz : Class[_], m : Method, params : Object*) = delegate.urlFor(clazz, m, params)
+  def getPriority = delegate.getPriority
+  def getOriginalUri = delegate.getOriginalUri
 }
 
 class ScalyMethod(delegate : ResourceMethod, val path : String) extends ResourceMethod {
-
   def getMethod = delegate.getMethod
-
   def getResource = delegate.getResource
-
   def containsAnnotation(annotation : Class[_ <: Annotation]) = delegate.containsAnnotation(annotation)
 }
 
