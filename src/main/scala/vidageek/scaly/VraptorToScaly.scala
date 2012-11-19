@@ -41,7 +41,7 @@ class ScalyStereotype(componentRegistry : ComponentRegistry, router : Router) ex
   private def apply(clazz : Class[_]) = clazz.getDeclaredMethods().filter(_.getName == "apply").head
 }
 
-class ScalyRoute(delegate : Route, path : String) extends Route {
+case class ScalyRoute(delegate : Route, path : String) extends Route {
 
   def resourceMethod(request : MutableRequest, uri : String) = new ScalyMethod(delegate.resourceMethod(request, uri), uri)
 
@@ -53,7 +53,7 @@ class ScalyRoute(delegate : Route, path : String) extends Route {
   def getOriginalUri = delegate.getOriginalUri
 }
 
-class ScalyMethod(delegate : ResourceMethod, val path : String) extends ResourceMethod {
+case class ScalyMethod(delegate : ResourceMethod, path : String) extends ResourceMethod {
   def getMethod = delegate.getMethod
   def getResource = delegate.getResource
   def containsAnnotation(annotation : Class[_ <: Annotation]) = delegate.containsAnnotation(annotation)

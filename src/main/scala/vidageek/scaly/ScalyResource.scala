@@ -12,7 +12,7 @@ class ScalyResource extends Scaly with UnsafeRendering {
 
   Get("/aff/{name}") { (name : String) =>
     println(name)
-    render
+    render(name)
   }
 
   Get("/abc") { (asdf : String) =>

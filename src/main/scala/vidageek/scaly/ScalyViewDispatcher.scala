@@ -17,7 +17,8 @@ class ScalyViewDispatcher(result : Result) extends Interceptor {
 
   override def intercept(stack : InterceptorStack, method : ResourceMethod, resourceInstance : Object) = {
     result.use(Results.nothing) // render view
-    println("Should render view for path %s".format(method.asInstanceOf[ScalyMethod].path))
+    val data = result.included.get("viewData").asInstanceOf[ViewData[_]]
+    println("Should render view for path %s with parameters %s".format(method.asInstanceOf[ScalyMethod].path, data))
     stack.next(method, resourceInstance)
   }
 
