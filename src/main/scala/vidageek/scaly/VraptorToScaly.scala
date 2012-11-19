@@ -5,6 +5,15 @@ import br.com.caelum.vraptor.http.MutableRequest
 import java.lang.reflect.Method
 import br.com.caelum.vraptor.resource.ResourceMethod
 import java.lang.annotation.Annotation
+import br.com.caelum.vraptor.ioc.spring.SpringProvider
+import br.com.caelum.vraptor.ComponentRegistry
+
+class ScalyProvider extends SpringProvider {
+
+  override def registerCustomComponents(registry : ComponentRegistry) = {
+    registry.register(classOf[ScalyStereotype], classOf[ScalyStereotype]);
+  }
+}
 
 class ScalyRoute(delegate : Route, path : String) extends Route {
 
@@ -23,3 +32,4 @@ class ScalyMethod(delegate : ResourceMethod, val path : String) extends Resource
   def getResource = delegate.getResource
   def containsAnnotation(annotation : Class[_ <: Annotation]) = delegate.containsAnnotation(annotation)
 }
+
