@@ -1,16 +1,13 @@
 package vidageek.scaly
 
-import scala.annotation.implicitNotFound
+import java.lang.reflect.Method
 import scala.collection.mutable.ListBuffer
 import org.springframework.beans.factory.annotation.Autowired
 import br.com.caelum.vraptor.{ ComponentRegistry, Result }
-import br.com.caelum.vraptor.http.route.Router
-import br.com.caelum.vraptor.ioc.{ ApplicationScoped, StereotypeHandler }
-import br.com.caelum.vraptor.resource.HttpMethod
-import br.com.caelum.vraptor.http.route.Route
 import br.com.caelum.vraptor.http.MutableRequest
-import java.lang.reflect.Method
-import br.com.caelum.vraptor.resource.ResourceMethod
+import br.com.caelum.vraptor.http.route.{ Route, Router }
+import br.com.caelum.vraptor.ioc.{ ApplicationScoped, StereotypeHandler }
+import br.com.caelum.vraptor.resource.{ HttpMethod, ResourceMethod }
 import java.lang.annotation.Annotation
 
 trait Scaly extends FunctionsToRequestCode with Rendering with ResultInjection with RequestMethods
