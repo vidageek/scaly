@@ -4,7 +4,7 @@ import br.com.caelum.vraptor.Result
 import br.com.caelum.vraptor.ComponentRegistry
 
 @ScalyAware
-class ScalyResource extends Scaly {
+class ScalyResource extends Scaly with UnsafeRendering {
 
   Get("/asdf")
 
