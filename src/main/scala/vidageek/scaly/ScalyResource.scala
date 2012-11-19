@@ -11,6 +11,10 @@ class ScalyResource extends Scaly with UnsafeRendering {
   Get("/acd")
 
   Get("/aff/{name}") { (name : String) =>
+    expect(
+      name ==> (_.length == 10),
+      name ==> (_ == "asdrubal"))
+
     println(name)
     render(name)
   }
