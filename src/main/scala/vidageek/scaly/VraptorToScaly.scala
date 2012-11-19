@@ -11,7 +11,7 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.http.route.Router
 import br.com.caelum.vraptor.ioc.StereotypeHandler
 
-class ScalyProvider extends SpringProvider {
+class ScalySpringProvider extends SpringProvider {
 
   override def registerCustomComponents(registry : ComponentRegistry) = {
     registry.register(classOf[ScalyStereotype], classOf[ScalyStereotype]);
