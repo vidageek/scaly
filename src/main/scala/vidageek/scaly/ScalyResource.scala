@@ -4,7 +4,7 @@ import br.com.caelum.vraptor.Result
 import br.com.caelum.vraptor.ComponentRegistry
 
 @ScalyAware
-class ScalyResource extends Scaly with UnsafeRendering {
+class ScalyResource extends Scaly with UnsafeRendering with Messages {
 
   Get("/asdf")
 
@@ -12,8 +12,8 @@ class ScalyResource extends Scaly with UnsafeRendering {
 
   Get("/aff/{name}") { (name : String) =>
     expect(
-      name.length == 10,
-      name == "asdrubal")
+      `name cant be null`(name) ==> (name.length == 10),
+      `name must be asdrubal`(name) ==> (name == "asdrubal"))
 
     println(name)
     render(name)
