@@ -10,6 +10,9 @@ version = '1.0-SNAPSHOT'
 
 repositories {
 	mavenCentral()
+	maven {
+		url "http://repo.typesafe.com/typesafe/releases/"
+	}
 }
 
 configurations {
@@ -26,6 +29,8 @@ dependencies {
 	compile 'com.google.inject:guice:3.0-rc2'
 	compile 'com.google.inject.extensions:guice-multibindings:3.0-rc2'
 	compile 'org.scala-lang:scala-library:2.9.2'
+	compile 'play:templates-compiler_2.9.2:2.1-10112012'
+    compile 'play:templates_2.9.2:2.1-09142012'
 	
     provided 'javax.servlet:servlet-api:2.5'
 	
