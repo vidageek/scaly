@@ -3,6 +3,7 @@ package vidageek.scaly
 case class ViewData[T](data : T)
 
 trait UnsafeRendering {
+  def renderUnsafe = new ViewData(Seq[(String, Any)]())
   def renderUnsafe(data : (String, Any)*) = new ViewData(data.toSeq)
 }
 
