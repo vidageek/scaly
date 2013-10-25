@@ -16,13 +16,6 @@ import scaly.ScalyAware
 
 import java.lang.annotation.Annotation
 
-class ScalySpringProvider extends GuiceProvider {
-
-  override def registerCustomComponents(registry : ComponentRegistry) = {
-    registry.register(classOf[ScalyStereotype], classOf[ScalyStereotype]);
-  }
-}
-
 @ApplicationScoped
 class ScalyStereotype(componentRegistry : ComponentRegistry, router : Router) extends StereotypeHandler {
 

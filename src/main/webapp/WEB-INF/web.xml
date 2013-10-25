@@ -4,7 +4,7 @@
 
 	<context-param>
 		<param-name>br.com.caelum.vraptor.provider</param-name>
-		<param-value>vidageek.scaly.ScalySpringProvider</param-value>
+		<param-value>scaly.ScalyProvider</param-value>
 	</context-param>
 
 	<filter>
