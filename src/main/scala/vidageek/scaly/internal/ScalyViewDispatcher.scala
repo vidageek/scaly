@@ -1,14 +1,13 @@
-package vidageek.scaly
+package vidageek.scaly.internal
 
 import br.com.caelum.vraptor.interceptor.Interceptor
 import br.com.caelum.vraptor.Intercepts
-import br.com.caelum.vraptor.interceptor.ForwardToDefaultViewInterceptor
 import br.com.caelum.vraptor.resource.ResourceMethod
 import br.com.caelum.vraptor.core.InterceptorStack
-import br.com.caelum.vraptor.interceptor.ExecuteMethodInterceptor
 import br.com.caelum.vraptor.Result
 import br.com.caelum.vraptor.view.Results
 import br.com.caelum.vraptor.interceptor.OutjectResult
+import br.com.caelum.vraptor.interceptor.ForwardToDefaultViewInterceptor
 
 @Intercepts(after = Array(classOf[OutjectResult]), before = Array(classOf[ForwardToDefaultViewInterceptor]))
 class ScalyViewDispatcher(result : Result) extends Interceptor {

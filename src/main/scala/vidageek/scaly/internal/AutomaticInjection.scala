@@ -1,4 +1,4 @@
-package vidageek.scaly
+package vidageek.scaly.internal
 
 import br.com.caelum.vraptor.Result
 import com.google.inject.Inject

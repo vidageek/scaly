@@ -1,4 +1,4 @@
-package vidageek.scaly
+package vidageek.scaly.internal
 
 import scala.collection.mutable.ListBuffer
 import br.com.caelum.vraptor.resource.HttpMethod

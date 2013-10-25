@@ -1,4 +1,4 @@
-package vidageek.scaly
+package vidageek.scaly.internal
 
 case class ViewData[T](data : T)
 

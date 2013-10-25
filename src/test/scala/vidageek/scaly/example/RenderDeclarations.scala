@@ -1,8 +1,8 @@
 package vidageek.scaly.example
 
-import vidageek.scaly.TypeSafeRendering
-import vidageek.scaly.ViewData
-import vidageek.scaly.UnsafeRendering
+import vidageek.scaly.internal.TypeSafeRendering
+import vidageek.scaly.internal.ViewData
+import vidageek.scaly.internal.UnsafeRendering
 
 class TypeSafeRenderDeclarations extends TypeSafeRendering {
 

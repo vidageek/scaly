@@ -1,4 +1,4 @@
-package vidageek.scaly
+package vidageek.scaly.internal
 
 class RequestCode(val clazz : Class[_])
 
