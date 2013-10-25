@@ -4,6 +4,7 @@ class RequestCode(val clazz : Class[_])
 
 trait FunctionsToRequestCode {
 
+  implicit def callByNameToRequestCode(f : => ViewData[_]) = new RequestCode(f.getClass)
   implicit def functionToRequestCode(f : Function0[ViewData[_]]) = new RequestCode(f.getClass)
   implicit def functionToRequestCode(f : Function1[_, ViewData[_]]) = new RequestCode(f.getClass)
   implicit def functionToRequestCode(f : Function2[_, _, ViewData[_]]) = new RequestCode(f.getClass)
