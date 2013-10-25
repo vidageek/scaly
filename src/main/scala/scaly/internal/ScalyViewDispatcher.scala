@@ -1,4 +1,4 @@
-package vidageek.scaly.internal
+package scaly.internal
 
 import br.com.caelum.vraptor.interceptor.Interceptor
 import br.com.caelum.vraptor.Intercepts

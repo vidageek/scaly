@@ -1,16 +1,19 @@
-package vidageek.scaly.internal
+package scaly.internal
 
 import br.com.caelum.vraptor.http.route.Route
 import br.com.caelum.vraptor.http.MutableRequest
+
 import java.lang.reflect.Method
+
 import br.com.caelum.vraptor.resource.ResourceMethod
 import br.com.caelum.vraptor.ComponentRegistry
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.http.route.Router
 import br.com.caelum.vraptor.ioc.StereotypeHandler
 import br.com.caelum.vraptor.ioc.guice.GuiceProvider
-import vidageek.scaly.Scaly
-import vidageek.scaly.ScalyAware
+import scaly.Scaly
+import scaly.ScalyAware
+
 import java.lang.annotation.Annotation
 
 class ScalySpringProvider extends GuiceProvider {

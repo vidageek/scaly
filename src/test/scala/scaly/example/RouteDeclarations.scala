@@ -1,6 +1,6 @@
-package vidageek.scaly.example
+package scaly.example
 
-import vidageek.scaly.Scaly
+import scaly.Scaly
 
 class GetDeclarations extends Scaly {
 
