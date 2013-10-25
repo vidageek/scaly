@@ -5,13 +5,13 @@ import br.com.caelum.vraptor.http.MutableRequest
 import java.lang.reflect.Method
 import br.com.caelum.vraptor.resource.ResourceMethod
 import java.lang.annotation.Annotation
-import br.com.caelum.vraptor.ioc.spring.SpringProvider
 import br.com.caelum.vraptor.ComponentRegistry
 import br.com.caelum.vraptor.ioc.ApplicationScoped
 import br.com.caelum.vraptor.http.route.Router
 import br.com.caelum.vraptor.ioc.StereotypeHandler
+import br.com.caelum.vraptor.ioc.guice.GuiceProvider
 
-class ScalySpringProvider extends SpringProvider {
+class ScalySpringProvider extends GuiceProvider {
 
   override def registerCustomComponents(registry : ComponentRegistry) = {
     registry.register(classOf[ScalyStereotype], classOf[ScalyStereotype]);
