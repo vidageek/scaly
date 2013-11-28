@@ -9,7 +9,7 @@ import br.com.caelum.vraptor.view.Results
 import br.com.caelum.vraptor.interceptor.OutjectResult
 import br.com.caelum.vraptor.interceptor.ForwardToDefaultViewInterceptor
 
-@Intercepts(after = Array(classOf[OutjectResult]), before = Array(classOf[ForwardToDefaultViewInterceptor]))
+//@Intercepts(after = Array(classOf[OutjectResult]), before = Array(classOf[ForwardToDefaultViewInterceptor]))
 class ScalyViewDispatcher(result : Result) extends Interceptor {
 
   override def accepts(method : ResourceMethod) = method.isInstanceOf[ScalyMethod]
