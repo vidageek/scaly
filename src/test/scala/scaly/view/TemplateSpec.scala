@@ -6,7 +6,7 @@ class TemplateSyntaxSpec extends Specification {
 
   "Template Syntax" should {
     "allow string only content" in {
-      Parse("""abc""") must_== Seq(StringElement("abc"))
+      Parse("""abc""") must_== Seq(Html("abc"))
     }
   }
 

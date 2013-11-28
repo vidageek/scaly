@@ -2,3 +2,8 @@ validation
 redirection
 i18n
 sitemap para referencias estaticas para urls.
+corrigir bug do $ no nome do parâmetro
+aceitar tuplas como parâmetros da requisição
+aceitar Option como parâmetros da requisição
+aceitar Seq, Map e outros como parâmetros da requisição
+escrotamente fácil de usar com sqlite
